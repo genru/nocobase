@@ -5,16 +5,16 @@ RUN apt-get update && apt-get install -y jq
 WORKDIR /tmp
 COPY . /tmp
 RUN corepack enable
-RUN yarn config set registry $VERDACCIO_URL
+
 RUN npx npm-cli-adduser --username test --password test -e test@nocobase.com -r $VERDACCIO_URL
 RUN cd /tmp && \
     NEWVERSION="$(cat lerna.json | jq '.version' | tr -d '"').$(date +%s)" \
         && tmp=$(mktemp) \
         && jq ".version = \"${NEWVERSION}\"" lerna.json > "$tmp" && mv "$tmp" lerna.json
 
-RUN yarn install
+RUN yarn install --verbose
 RUN yarn build
-
+RUN yarn config set registry $VERDACCIO_URL
 RUN git checkout -b release \
     && yarn version:alpha -y  \
     && git config user.email "test@mail.com"  \
