@@ -10,7 +10,7 @@ RUN npx npm-cli-adduser --username test --password test -e test@nocobase.com -r 
 RUN cd /tmp && \
     NEWVERSION="$(cat lerna.json | jq '.version' | tr -d '"').$(date +%s)" \
         && tmp=$(mktemp) \
-        && jq ".version = \"${NEWVERSION}\"" lerna.json > "$tmp" && mv "$tmp" lerna.json \
+        && jq ".version = \"${NEWVERSION}\"" lerna.json > "$tmp" && mv "$tmp" lerna.json
 
 RUN yarn install
 RUN yarn build
