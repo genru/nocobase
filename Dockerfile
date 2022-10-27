@@ -37,7 +37,7 @@ RUN cd /app \
   && tar -zcf ./nocobase.tar.gz -C /app/my-nocobase-app .
 
 
-FROM node:18-stretch-slim
+FROM node:18-slim
 RUN apt-get update && apt-get install -y nginx
 
 RUN rm -rf /etc/nginx/sites-enabled/default
