@@ -3,7 +3,7 @@ name: main-docker
 on:
   push:
     branches:
-      - 'main'
+      - 'fix/docker-ci'
 
 jobs:
   push-docker:
