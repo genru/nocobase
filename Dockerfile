@@ -4,6 +4,7 @@ ARG VERDACCIO_URL=http://host.docker.internal:10104/
 RUN apt-get update && apt-get install -y jq
 WORKDIR /tmp
 COPY . /tmp
+RUN corepack enable
 RUN npx npm-cli-adduser --username test --password test -e test@nocobase.com -r $VERDACCIO_URL
 RUN cd /tmp && \
     NEWVERSION="$(cat lerna.json | jq '.version' | tr -d '"').$(date +%s)" \
