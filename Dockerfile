@@ -5,12 +5,14 @@ RUN apt-get update && apt-get install -y jq
 WORKDIR /tmp
 COPY . /tmp
 RUN corepack enable
+RUN yarn config set registry $VERDACCIO_URL
 RUN npx npm-cli-adduser --username test --password test -e test@nocobase.com -r $VERDACCIO_URL
 RUN cd /tmp && \
     NEWVERSION="$(cat lerna.json | jq '.version' | tr -d '"').$(date +%s)" \
         && tmp=$(mktemp) \
-        && jq ".version = \"${NEWVERSION}\"" lerna.json > "$tmp" && mv "$tmp" lerna.json
-RUN yarn install 
+        && jq ".version = \"${NEWVERSION}\"" lerna.json > "$tmp" && mv "$tmp" lerna.json \
+
+RUN yarn install
 RUN yarn build
 
 RUN git checkout -b release \
@@ -20,7 +22,7 @@ RUN git checkout -b release \
     && git commit -m "chore(versions): test publish packages xxx" \
     && yarn release:force --registry $VERDACCIO_URL
 
-RUN yarn config set registry $VERDACCIO_URL
+
 WORKDIR /app
 RUN cd /app \
   && yarn create nocobase-app my-nocobase-app -a -e APP_ENV=production \
@@ -35,7 +37,7 @@ RUN cd /app \
   && tar -zcf ./nocobase.tar.gz -C /app/my-nocobase-app .
 
 
-FROM node:16-stretch-slim
+FROM node:18-stretch-slim
 RUN apt-get update && apt-get install -y nginx
 
 RUN rm -rf /etc/nginx/sites-enabled/default
