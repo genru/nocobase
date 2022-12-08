@@ -46,5 +46,5 @@ jobs:
           script: |
             export APP_NAME=$(echo $IMAGE_TAG | cut -d ":" -f 2)
             echo $APP_NAME
-            nvm use 16
-            node -v
+            echo "http://localhost:53000/up/$APP_NAME"
+            curl "http://localhost:53000/up/$APP_NAME"
