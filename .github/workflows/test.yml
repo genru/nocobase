@@ -44,5 +44,5 @@ jobs:
           password: ${{ secrets.deploy_host_password }}
           envs: IMAGE_TAG
           script: |
-            export APP_NAME=$(echo $IMAGE_TAG | cut -d ";" -f 2)
+            export APP_NAME=$(echo $IMAGE_TAG | cut -d ":" -f 2)
             echo $APP_NAME
