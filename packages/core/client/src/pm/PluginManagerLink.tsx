@@ -55,7 +55,7 @@ export const SettingsCenterDropdown = () => {
       path: 'acl/roles',
     },
     {
-      title: t('File storages'),
+      title: t('File manager', { ns: 'file_manager' }),
       path: 'file-manager/storages',
     },
     {

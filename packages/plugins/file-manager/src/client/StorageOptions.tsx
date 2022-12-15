@@ -2,19 +2,20 @@ import { FormLayout } from '@formily/antd';
 import { Field } from '@formily/core';
 import { observer, RecursionField, Schema, useField, useForm } from '@formily/react';
 import React, { useEffect, useState } from 'react';
+import { NAMESPACE } from './locale';
 
 const schema = {
   local: {
     properties: {
       documentRoot: {
-        title: '{{t("Destination")}}',
+        title: `{{t("Destination", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         default: 'uploads',
       },
       path: {
-        title: '{{t("Path")}}',
+        title: `{{t("Path", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
@@ -23,7 +24,7 @@ const schema = {
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Checkbox',
-        'x-content': '{{t("Use the built-in static file server")}}',
+        'x-content': `{{t("Use the built-in static file server", { ns: "${NAMESPACE}" })}}`,
         default: true,
       },
     },
@@ -31,35 +32,35 @@ const schema = {
   'ali-oss': {
     properties: {
       region: {
-        title: '{{t("Region")}}',
+        title: `{{t("Region", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       accessKeyId: {
-        title: '{{t("AccessKey ID")}}',
+        title: `{{t("AccessKey ID", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       accessKeySecret: {
-        title: '{{t("AccessKey Secret")}}',
+        title: `{{t("AccessKey Secret", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Password',
         required: true,
       },
       bucket: {
-        title: '{{t("Bucket")}}',
+        title: `{{t("Bucket", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       path: {
-        title: '{{t("Path")}}',
+        title: `{{t("Path", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
@@ -69,28 +70,28 @@ const schema = {
   'tx-cos': {
     properties: {
       Region: {
-        title: '{{t("Region")}}',
+        title: `{{t("Region", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       SecretId: {
-        title: '{{t("SecretId")}}',
+        title: `{{t("SecretId", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       SecretKey: {
-        title: '{{t("SecretKey")}}',
+        title: `{{t("SecretKey", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Password',
         required: true,
       },
       Bucket: {
-        title: '{{t("Bucket")}}',
+        title: `{{t("Bucket", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
@@ -101,35 +102,35 @@ const schema = {
   s3: {
     properties: {
       region: {
-        title: '{{t("Region")}}',
+        title: `{{t("Region", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       accessKeyId: {
-        title: '{{t("AccessKey ID")}}',
+        title: `{{t("AccessKey ID", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       secretAccessKey: {
-        title: '{{t("AccessKey Secret")}}',
+        title: `{{t("AccessKey Secret", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Password',
         required: true,
       },
       bucket: {
-        title: '{{t("Bucket")}}',
+        title: `{{t("Bucket", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
         required: true,
       },
       path: {
-        title: '{{t("Path")}}',
+        title: `{{t("Path", { ns: "${NAMESPACE}" })}}`,
         type: 'string',
         'x-decorator': 'FormItem',
         'x-component': 'Input',
