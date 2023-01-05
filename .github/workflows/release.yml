@@ -23,7 +23,7 @@ jobs:
           ls -alh .
           cat .git/HEAD
           npm config set https://registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-          git config --global --add safe.directory ${pwd}
+          git config --global --add safe.directory /__w/nocobase/nocobase
           git config --global user.email "test@mail.com"
           git config --global user.name "test" && git add .
           echo "# test" >> Release.md
