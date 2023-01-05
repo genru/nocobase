@@ -21,12 +21,11 @@ jobs:
         run: |
           pwd
           ls -alh .
-          
-          npm config set https://registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-          git config user.email "test@mail.com"
-          git config user.name "test" && git add .
-          echo "# test" >> Release.md
           cat .git/HEAD
+          npm config set https://registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+          git config --global user.email "test@mail.com"
+          git config --global user.name "test" && git add .
+          echo "# test" >> Release.md
           git add .
           git commit -m "chore(versions): test publish packages xxx"
           yarn release:force --registry https://registry.npmjs.org/
